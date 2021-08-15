@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+    {% block title %}
+    Login Page
+    {% endblock title %}
+{% block content %}
+
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="text-center">Login Your Account</h2>
+    </div>
+  </div>
+</section>
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="row mt-5 justify-content-center" data-aos="fade-up">
+          <div class="col-lg-4">
+          {% for message in messages %}
+          <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            {{ message }}
+          </div>
+      {% endfor %}
+          <h4 class="text-center"> Login Your Account </h4>
+            <form action="" method="post" role="form">
+            {% csrf_token %}
+              <div class="form-group">
+                <input type="text" class="form-control" name="name" id="name" placeholder="User Name" data-rule="minlen:4" data-msg="Please enter your user name" />
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password" data-rule="minlen:4" data-msg="Please enter your password" />
+                <div class="validate"></div>
+              </div>
+               <small>Forget My <a href="{% url 'forgotpassword' %}">Pasword!</a></small>
+              <div class="text-center">
+              <button type="submit" class="btn btn-success btn-block">Login</button>
+              </div>
+            </form>
+            <small>Don't have an accunt <a href="{% url 'registration' %}">Register Now</a></small>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+{% endblock content %}
